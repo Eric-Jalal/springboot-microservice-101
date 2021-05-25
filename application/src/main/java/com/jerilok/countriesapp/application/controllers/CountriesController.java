@@ -22,13 +22,14 @@ public class CountriesController extends AbstractRestController {
     @GetMapping
     @ResponseBody
     public ResponseEntity<?> getAllTheCountries() {
-
+        countriesService.getAllCountries();
         return null;
     }
 
     @GetMapping(value = "/{name}")
     @ResponseBody
     public ResponseEntity<?> getCountryByName(@PathVariable("name") @NotNull final String name) {
+        countriesService.getCountryByName(name);
         return null;
     }
 }
