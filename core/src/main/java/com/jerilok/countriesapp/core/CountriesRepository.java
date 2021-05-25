@@ -1,0 +1,49 @@
+package com.jerilok.countriesapp.core;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+
+@Repository
+public class CountriesRepository {
+
+    private static final Logger logger = LoggerFactory.getLogger(CountriesRepository.class);
+
+    @Value("${rest-countries-api-url}")
+    private String countriesApiUrl;
+
+    private final RestTemplate restTemplate;
+
+    public CountriesRepository() {
+        this.restTemplate = new RestTemplate();
+    }
+
+    public ObjectNode fetchAllCountries() {
+         return getForObject(countriesApiUrl, ObjectNode.class);
+    }
+
+    private <T> T getForObject(final String url,
+                               Class<T> cls,
+                               final Object... params) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        try {
+            ResponseEntity<T> products = restTemplate.exchange(url, HttpMethod.GET, entity, cls, params);
+            return products.getBody();
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return null;
+            }
+            throw e;
+        }
+    }
+
+}
