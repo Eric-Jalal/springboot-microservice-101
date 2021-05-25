@@ -9,13 +9,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-
 @Repository
 public class CountriesRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(CountriesRepository.class);
 
-    @Value("${rest-countries-api-url}")
+    @Value("${rest.countries.api.url}")
     private String countriesApiUrl;
 
     private final RestTemplate restTemplate;
@@ -25,7 +24,17 @@ public class CountriesRepository {
     }
 
     public ObjectNode fetchAllCountries() {
-         return getForObject(countriesApiUrl, ObjectNode.class);
+        logger.info("fetching all countries list from the endpoint");
+        final String countriesListEndpoint = countriesApiUrl + "/v2/all";
+
+        return getForObject(countriesListEndpoint, ObjectNode.class);
+    }
+
+    public ObjectNode fetchCountryByName(final String name) {
+        logger.info("fetching specific country by name");
+        final String countriesListEndpoint = countriesApiUrl + "/v2/name/" + name;
+
+        return getForObject(countriesListEndpoint, ObjectNode.class);
     }
 
     private <T> T getForObject(final String url,
@@ -45,5 +54,4 @@ public class CountriesRepository {
             throw e;
         }
     }
-
 }
