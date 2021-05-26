@@ -24,7 +24,34 @@ The application will be running on port ```8080```
 ### REST
 
 - Endpoint to fetch all the countries ```curl GET 'localhost:8080/countries/'```
+  
+```json
+[
+  {
+    "name": "Viet Nam",
+    "country_code": "VN"
+  },
+  {
+    "name": "Wallis and Futuna",
+    "country_code": "WF"
+  },
+....
+]
+```
+
 - Endpoint to fetch a specific country ```curl GET 'localhost:8080/countries/{name}'```
+```json
+[
+  {
+    "name": "Finland",
+    "country_code": "FI",
+    "capital": "Helsinki",
+    "population": 5491817,
+    "flag_file_url": "https://restcountries.eu/data/fin.svg"
+  }
+]
+```
+
 
 ----------------------------------------------------------------------------------
 
@@ -32,6 +59,8 @@ The application will be running on port ```8080```
 
 Some parts are still left to be implemented such as:
 
-- unit tests
-- implementing reactor
-- possibly some other enhancements in overall architecture
+- Name the Array list for ```/countries``` endpoint response
+- Remove the unnecessary Array parsing for ```/countries/{name}``` endpoint response
+- unit tests (This could go TDD in the first place :D)
+- implement reactor
+- possibly some enhancements in overall architecture
