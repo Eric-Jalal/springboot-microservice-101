@@ -13,11 +13,10 @@ The underlying resource for fetching the records is located here https://restcou
 - Endpoint to fetch a specific country ```curl GET 'https://restcountries.eu/rest/v2/name/{name}'```
 
 
-### Maven
-The project is built by ```mvn``` .
-
-- For cleaning and running the tests ```mvn clean test```
-- For running the application ```mvn deploy```
+### Run instruction
+The project is built by ```mvn``` . To run the application: 
+- Install the application using mvnw withing root directory```./mvnw install```
+- Start the application ```./mvnw spring-boot:run -pl application```
 
 The application will be running on port ```8080```
 
