@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public class AbstractRestController {
 
-    <K> ResponseEntity<K> buildEntityHttpStatusOk(final K dtoObject) {
+    protected <K> ResponseEntity<K> buildEntityHttpStatusOk(final K dtoObject) {
         return new ResponseEntity<>(dtoObject, HttpStatus.OK);
     }
 }
