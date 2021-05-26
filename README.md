@@ -60,6 +60,7 @@ Some parts are still left to be implemented such as:
 
 - Name the Array list for ```/countries``` endpoint response
 - Remove the unnecessary Array parsing for ```/countries/{name}``` endpoint response
+- Error handling at the responseEntity level, for example 404 for not found countries
 - unit tests (This could go TDD in the first place :D)
 - implement reactor
 - possibly some enhancements in overall architecture
