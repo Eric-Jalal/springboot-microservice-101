@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
 
         http.authorizeRequests()
-                .mvcMatchers("/countries")
+                .antMatchers("/countries", "/countries/**")
                 .permitAll()
                 .and()
                 .authorizeRequests()
