@@ -2,8 +2,8 @@
 
 This application is providing two endpoint to fetch country names and respected information.
 
-- ```GET /countries/ ``` is used to fetch the coutnries list.
-- ```GET /countries/{name} ``` is used to fetch the coutnries specific information.
+- ```GET /countries/``` is used to fetch the coutnries list.
+- ```GET /countries/{name}``` is used to fetch the coutnries specific information.
 
 ### Used APIs
 
@@ -25,3 +25,13 @@ The application will be running on port ```8080```
 
 - Endpoint to fetch all the countries ```curl GET 'localhost:8080/countries/'```
 - Endpoint to fetch a specific country ```curl GET 'localhost:8080/countries/{name}'```
+
+----------------------------------------------------------------------------------
+
+###NOTE
+
+Some parts are still left to be implemented such as:
+
+- unit tests
+- implementing reactor
+- possibly some other enhancements in overall architecture
