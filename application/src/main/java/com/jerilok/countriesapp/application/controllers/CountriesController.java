@@ -1,12 +1,14 @@
 package com.jerilok.countriesapp.application.controllers;
 
 import com.jerilok.countriesapp.core.AbstractRestController;
-import com.jerilok.countriesapp.core.CountriesService;
+import com.jerilok.countriesapp.core.countries.CountriesService;
+import com.jerilok.countriesapp.model.Country;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/countries",
@@ -21,15 +23,13 @@ public class CountriesController extends AbstractRestController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<?> getAllTheCountries() {
-        countriesService.getAllCountries();
-        return null;
+    public ResponseEntity<List<Country>> getAllTheCountries() {
+        return buildEntityHttpStatusOk(countriesService.getAllCountries());
     }
 
     @GetMapping(value = "/{name}")
     @ResponseBody
-    public ResponseEntity<?> getCountryByName(@PathVariable("name") @NotNull final String name) {
-        countriesService.getCountryByName(name);
-        return null;
+    public ResponseEntity<List<Country>> getCountryByName(@PathVariable("name") @NotNull final String name) {
+        return buildEntityHttpStatusOk(countriesService.getCountryByName(name));
     }
 }
