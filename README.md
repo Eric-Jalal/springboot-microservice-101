@@ -54,7 +54,7 @@ The application will be running on port ```8080```
 
 ----------------------------------------------------------------------------------
 
-###NOTE
+### NOTE
 
 Some parts are still left to be implemented such as:
 
