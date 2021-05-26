@@ -21,7 +21,7 @@ public class Country {
     private Integer population;
 
     @JsonProperty("flag_file_url")
-    private URL flagFileUrl;
+    private String flagFileUrl;
 
     public Country() {}
 
@@ -30,7 +30,7 @@ public class Country {
         this.countryCode = countryCode;
     }
 
-    public Country(String name, String countryCode, String capital, Integer population, URL flagFileUrl) {
+    public Country(String name, String countryCode, String capital, Integer population, String flagFileUrl) {
         this.name = name;
         this.countryCode = countryCode;
         this.capital = capital;
@@ -70,11 +70,11 @@ public class Country {
         this.population = population;
     }
 
-    public URL getFlagFileUrl() {
+    public String getFlagFileUrl() {
         return flagFileUrl;
     }
 
-    public void setFlagFileUrl(URL flagFileUrl) {
+    public void setFlagFileUrl(String flagFileUrl) {
         this.flagFileUrl = flagFileUrl;
     }
 }
