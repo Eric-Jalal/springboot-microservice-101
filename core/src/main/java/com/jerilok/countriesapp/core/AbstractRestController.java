@@ -8,4 +8,8 @@ public class AbstractRestController {
     protected <K> ResponseEntity<K> buildEntityHttpStatusOk(final K dtoObject) {
         return new ResponseEntity<>(dtoObject, HttpStatus.OK);
     }
+
+    protected <K> ResponseEntity<K> buildEntityHttpStatusNotFound() {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

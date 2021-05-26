@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class CountriesService {
@@ -24,8 +25,8 @@ public class CountriesService {
         return countriesProcessor.getCountries(allCountriesObjectNode);
     }
 
-    public List<Country> getCountryByName(final String name) {
+    public Optional<Country> getCountryByName(final String name) {
         Object countryObjectNode = countriesRepository.fetchCountryByName(name);
-        return countriesProcessor.getCountryForName(countryObjectNode);
+        return countriesProcessor.getCountryForName(Optional.ofNullable(countryObjectNode));
     }
 }

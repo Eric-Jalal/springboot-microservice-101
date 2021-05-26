@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class CountriesProcessor {
@@ -19,9 +21,14 @@ public class CountriesProcessor {
         return objectMap;
     }
 
-    public List<Country> getCountryForName(Object countriesObject) {
-        List<Map<String, Object>> countriesList = (List<Map<String, Object>>) countriesObject;
-        return countriesList.stream().map(this::mapCountryByName).collect(Collectors.toList());
+    public Optional<Country> getCountryForName(Optional<Object> countriesObject) {
+        List<Map<String, Object>> countriesList;
+        if (countriesObject.isPresent()) {
+           countriesList = (List<Map<String, Object>>) countriesObject.get();
+           return countriesList.stream().map(this::mapCountryByName).findAny();
+        }
+
+        return Optional.empty();
     }
 
     private Country mapCountry(Map<String, Object> objectMap) {
