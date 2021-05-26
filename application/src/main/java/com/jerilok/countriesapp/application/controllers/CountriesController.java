@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/countries",
@@ -23,7 +24,7 @@ public class CountriesController extends AbstractRestController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<List<Country>> getAllTheCountries() {
+    public ResponseEntity<Map<String, List<Country>>> getAllTheCountries() {
         return buildEntityHttpStatusOk(countriesService.getAllCountries());
     }
 

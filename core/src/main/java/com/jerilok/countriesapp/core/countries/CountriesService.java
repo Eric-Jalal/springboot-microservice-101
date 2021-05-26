@@ -4,6 +4,7 @@ import com.jerilok.countriesapp.model.Country;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CountriesService {
@@ -18,7 +19,7 @@ public class CountriesService {
         this.countriesProcessor = countriesProcessor;
     }
 
-    public List<Country> getAllCountries() {
+    public Map<String, List<Country>> getAllCountries() {
         Object allCountriesObjectNode = countriesRepository.fetchAllCountries();
         return countriesProcessor.getCountries(allCountriesObjectNode);
     }

@@ -3,6 +3,7 @@ package com.jerilok.countriesapp.core.countries;
 import com.jerilok.countriesapp.model.Country;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -10,9 +11,12 @@ import java.util.stream.Collectors;
 @Component
 public class CountriesProcessor {
 
-    public List<Country> getCountries(Object countriesObject) {
-        List<Map<String, Object>> countriesList = (List<Map<String, Object>>) countriesObject;
-        return countriesList.stream().map(this::mapCountry).collect(Collectors.toList());
+    public Map<String, List<Country>> getCountries(Object countriesObject) {
+        List<Map<String, Object>> countriesMap = (List<Map<String, Object>>) countriesObject;
+        List<Country> countriesList = countriesMap.stream().map(this::mapCountry).collect(Collectors.toList());
+        Map<String, List<Country>> objectMap = new HashMap<>();
+        objectMap.put("countries", countriesList);
+        return objectMap;
     }
 
     public List<Country> getCountryForName(Object countriesObject) {
