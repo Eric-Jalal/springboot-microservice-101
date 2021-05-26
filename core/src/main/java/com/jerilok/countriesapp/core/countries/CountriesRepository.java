@@ -1,6 +1,5 @@
-package com.jerilok.countriesapp.core;
+package com.jerilok.countriesapp.core.countries;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,18 +22,18 @@ public class CountriesRepository {
         this.restTemplate = new RestTemplate();
     }
 
-    public ObjectNode fetchAllCountries() {
+    public Object fetchAllCountries() {
         logger.info("fetching all countries list from the endpoint");
         final String countriesListEndpoint = countriesApiUrl + "/v2/all";
 
-        return getForObject(countriesListEndpoint, ObjectNode.class);
+        return getForObject(countriesListEndpoint, Object.class);
     }
 
-    public ObjectNode fetchCountryByName(final String name) {
+    public Object fetchCountryByName(final String name) {
         logger.info("fetching specific country by name");
         final String countriesListEndpoint = countriesApiUrl + "/v2/name/" + name;
 
-        return getForObject(countriesListEndpoint, ObjectNode.class);
+        return getForObject(countriesListEndpoint, Object.class);
     }
 
     private <T> T getForObject(final String url,
