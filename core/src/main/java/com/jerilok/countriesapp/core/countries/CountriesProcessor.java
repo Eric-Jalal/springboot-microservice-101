@@ -8,23 +8,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class CountriesProcessor {
 
-    public Map<String, List<Country>> getCountries(Object countriesObject) {
-        List<Map<String, Object>> countriesMap = (List<Map<String, Object>>) countriesObject;
+    public Map<String, List<Country>> getAllCountries(List<Map<String, Object>> countriesMap) {
         List<Country> countriesList = countriesMap.stream().map(this::mapCountry).collect(Collectors.toList());
         Map<String, List<Country>> objectMap = new HashMap<>();
         objectMap.put("countries", countriesList);
         return objectMap;
     }
 
-    public Optional<Country> getCountryForName(Optional<Object> countriesObject) {
+    public Optional<Country> getCountryForName(Optional<List<Map<String, Object>>> countriesObject) {
         List<Map<String, Object>> countriesList;
         if (countriesObject.isPresent()) {
-           countriesList = (List<Map<String, Object>>) countriesObject.get();
+           countriesList = countriesObject.get();
            return countriesList.stream().map(this::mapCountryByName).findAny();
         }
 

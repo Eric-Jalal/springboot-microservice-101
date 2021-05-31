@@ -21,12 +21,14 @@ public class CountriesService {
     }
 
     public Map<String, List<Country>> getAllCountries() {
-        Object allCountriesObjectNode = countriesRepository.fetchAllCountries();
-        return countriesProcessor.getCountries(allCountriesObjectNode);
+        List<Map<String, Object>> countriesMap =
+                (List<Map<String, Object>>) countriesRepository.fetchAllCountries();
+        return countriesProcessor.getAllCountries(countriesMap);
     }
 
     public Optional<Country> getCountryByName(final String name) {
-        Object countryObjectNode = countriesRepository.fetchCountryByName(name);
-        return countriesProcessor.getCountryForName(Optional.ofNullable(countryObjectNode));
+        List<Map<String, Object>> countryList =
+                (List<Map<String, Object>>) countriesRepository.fetchCountryByName(name);
+        return countriesProcessor.getCountryForName(Optional.ofNullable(countryList));
     }
 }
